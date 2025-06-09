@@ -571,12 +571,10 @@ $statement = "SELECT * FROM users WHERE name='" + $userName + "' AND password='"
 						A <term>denial of service attack</term> (<term>Dos</term>) attempts to keep a system from working by overwhelming it with requests. A 
 						<term>distributed denial of service attack</term> (<term>DDoS</term>) does the same thing by utilizing many different machines. Typically the attacking nodes for a DDoS attack are members of a botnet, machines that have been exploited previously and are under the attackers control.
 					</p>
-						
-						<p>
+					<p>
 						DoS attacks can take many forms including:
 					</p>
-						
-							<p><idx>SYN Floods</idx><term>SYN Floods</term>A malicious actor can send multiple SYN packets to initiate the TCP three-way handshake. SYN packets are easy to send, but may cause significant resources to be allocated on the server responding to them. Due to the asymettric nature of resource allocation this makes the use of SYN packets particularly suited to DoS attack. 
+					<p><idx>SYN floods</idx><term>SYN Floods</term>A malicious actor can send multiple SYN packets to initiate the TCP three-way handshake. SYN packets are easy to send, but may cause significant resources to be allocated on the server responding to them. Due to the asymettric nature of resource allocation this makes the use of SYN packets particularly suited to DoS attack. 
 									<url href="https://en.wikipedia.org/wiki/SYN_cookies">SYN cookies</url> can be used to help prevent this kind of attack.
 							</p>
 							

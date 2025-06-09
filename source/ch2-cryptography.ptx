@@ -571,8 +571,15 @@ cleartext = (11**29)%91 = 72 (decrypted using N and d)
 						<em>collision</em> and this particular algorithm is useless because it generates so many of them.
 				
 					</p>
+
+<exercise label = "fillin-AlwaysDancing" xml:id="fillin-AlwaysDancing">
+        <statement>
+<p>What would the anagram hash of "AlwaysDancing" be?<var/></p></statement><setup><var>
+<condition string="aaacdgilnnswy"><feedback><p>Right!</p></feedback></condition>
+<condition string="^\s*default\s*$"><feedback><p>Incorrect. Use all lower case and put in alphabetical order. Please try again.</p></feedback></condition></var></setup>
+
+</exercise> 
 					
-                    <question><p>What would the anagram hash of "AlwaysDancing" be?</p></question>
 						<p>
 					Now that we understand what hashes do and to some extant how they are possible, lets look at a much more useful hash function.
 				</p>
@@ -586,7 +593,10 @@ cleartext = (11**29)%91 = 72 (decrypted using N and d)
 					</p>
 				
 					<p>
-						For this lab and for all of those that require Docker containers, you can choose to use a Github codespace or to use a local Docker installation. There are advantages to each. Each Github codespace you create is hosted by GitHub in a Docker container, running on a virtual machine. Github codespaces are easy to set up and use, but you may be charged for the time you spend using them if you use too much time, so you need to remember to shut them down or delete them when you have finished with them. Local Docker installations are free, but they require space on your harddrive as well as more setup and configuration. 
+						For this lab and for all of those that require Docker containers, you can choose to use a Github codespace or to use a local Docker installation. There are advantages to each. Each Github codespace you create is hosted by GitHub in a Docker container, running on a virtual machine. Github codespaces are easy to set up and use, but you may be charged for the time you spend using them if you use too much time, so you need to remember to shut them down or delete them when you have finished with them. Local Docker installations are cost-free, but they require space on your harddrive as well as more setup and configuration. 
+					</p>
+					<p>
+						Please choose one of the following options to run this lab. Complete that set-up and then skip down to the section titled <xref ref="md5-hash-continue" /> to continue with the lab.
 					</p>
 
 					</introduction>
@@ -617,11 +627,11 @@ cleartext = (11**29)%91 = 72 (decrypted using N and d)
 								</li>
 								<li>
 									<p>
-										Wait for the codespace to be created.
+										Wait patiently for the codespace to be created. It can take a bit longer than you might expect, but once it is created, you will be able to run the lab in the codespace.
 									</p>
 								</li>
 							</ol>
-						Be sure to either stop or delete this codespace when you are doneby clicking the "Stop" button or the "Delete" button in the Codespaces tab of your repository. 
+						Be sure to either stop or delete this codespace when you are done by clicking the "Stop" button or the "Delete" button in the Codespaces tab of your repository. 
 						</p>
 						<p>
 						Next, jump down to follow the lab directions in <xref ref="md5-hash-continue" />. 
@@ -657,8 +667,10 @@ root@vm-name:/</pre>
 						<title>MD5 Hash</title>
 					<p>
 					MD5 is a message-digest algorithm that produces significantly better hashes than our Anagram algorithm. Most Linux distributions include a simple utility for creating an MD5 hash based on a file’s contents. This command is named <c>md5sum</c>. Typically this is used to detect if a file has been tampered with. A website may provide links to download software as well as an MD5 hash of the files so that you know what you’ve downloaded is correct. Similarly a security system may keep md5sums (MD5 hashes) of certain critical files to determine if they have been tampered with by malware. Let’s practice taking the md5sum of the 
-						<c>/etc/passwd</c> file. Note that <c>root@vm-name:/#</c> is the prompt in the terminal, indicating that we are running as root on a container named <c>vm-name</c>. Your will appear differently.
-				
+						<c>/etc/passwd</c> file. Note that <c>root@vm-name:/#</c> is the prompt in the terminal, indicating that we are running as root on a container named <c>vm-name</c>. Your will appear differently. 
+					</p>
+					<p>
+						Type the following command into the terminal: <c>md5sum /etc/passwd</c>. You should see your command followed by output similar to the following:
 					</p>
 
 					<pre>root@vm-name:/# md5sum /etc/passwd
@@ -671,12 +683,11 @@ root@vm-name:/</pre>
 
 					<p>
 					Now we’ll make a file with 
-						<em>your</em> first name in it and store it in <c>/tmp/name.txt</c>:
-				
+						<em>your</em> first name in it and store it in <c>/tmp/name.txt</c> by typing <c>echo "&lt;your_name&gt;" &gt;&gt; /tmp/name.txt</c> which will appear as follows:
 					</p>
 					<pre>root@vm-name:/# echo "&lt;your_name&gt;" &gt;&gt; /tmp/name.txt</pre>
 					<note>
-						<p>Substitute your actual first name for &lt;your_name&gt;, but be sure to include the quotation marks.</p>
+						<p>Be sure to substitute your actual first name for &lt;your_name&gt;, but be sure to include the quotation marks.</p>
 					</note>
 					<p>
 						The <c>cat</c> command in Linux is used to display the contents of files, concatenate multiple files, and create new files, so you can see the contents of the new file by running: <c>cat /tmp/name.txt</c>. 
@@ -688,15 +699,14 @@ root@vm-name:/</pre>
                     </p>  
                     </question>
 					<p>
-					For our final lab activity, lets take a look at some of the weaknesses of hashes.
+					For our final lab activity, let's take a look at some of the weaknesses of hashes.
 				</p>
 					<p>
 						<term>Hash Cracking</term>
 					</p>
 					<p>
 					Passwords in a Linux system are hashed and stored in the 
-						<c>/etc/shadow</c> file. Let’s print out the contents of that file to see how it looks:
-				
+						<c>/etc/shadow</c> file. Let’s print out the contents of that file to see how it looks. Type <c>cat /etc/shadow</c>, and you should see your command followed by output similar to the following:
 					</p>
 					<pre>root@vm-name:/# cat /etc/shadow
 root:*:19219:0:99999:7:::
@@ -730,8 +740,7 @@ karl:$y$j9T$oR2ZofMTuH3dpEGbw6c/y.$TwfvHgCl4sIp0b28YTepJ3YVvl/3UyWKeLCmDV1tAd9:1
 					</p>
 					<p>
 					John the Ripper (aka John) is already installed on this container along with a simple wordlist. We will tell it to use the default wordlist to try and determine what the password is that matches karl’s hash in 
-						<c>/etc/shadow</c>:
-				
+						<c>/etc/shadow</c> by running the command <c>john --format=crypt --wordlist=/usr/share/john/password.lst /etc/shadow</c>. The <c>--format=crypt</c> option tells John the Ripper to use the crypt format, which is the format used by the hashes in the shadow file. The <c>--wordlist</c> option tells John to use the specified wordlist file, which is a list of common passwords. The last argument is the file containing the hashes, in this case <c>/etc/shadow</c>. You should see your command followed by output similar to the following:
 					</p>
 					<pre>root@vm-name:/# john --format=crypt --wordlist=/usr/share/john/password.lst /etc/shadow
 Loaded 1 password hash (crypt, generic crypt(3) [?/64])
@@ -769,8 +778,7 @@ Session completed</pre>
 						<c>crypt</c> to show that we have the actual password. This utility is already installed on your container. We will start by printing out just the line in 
 						<c>/etc/shadow</c> that has karl’s info. The Linux <c>grep</c> command is a powerful search tool. (The name is an acronym from <b>G</b>lobally search for a Regular Expression and Print matches.) We will use the 
 						<c>grep</c> command to limit out output to things that have 
-						<c>karl</c> in them:
-				
+						<c>karl</c> in them by typing <c>cat /etc/shadow | grep karl</c>. You should see your command followed by output similar to the following:
 					</p>
 					<pre>root@vm-name:/# cat /etc/shadow | grep karl
 karl:$y$j9T$oR2ZofMTuH3dpEGbw6c/y.$TwfvHgCl4sIp0b28YTepJ3YVvl/3UyWKeLCmDV1tAd9:19255:0:99999:7:::</pre>
@@ -815,7 +823,6 @@ karl:$y$j9T$oR2ZofMTuH3dpEGbw6c/y.$TwfvHgCl4sIp0b28YTepJ3YVvl/3UyWKeLCmDV1tAd9:1
 							</li>
 						</ul>
 					   
-				
 					</p>
 					<p>
 					The <c>crypt</c> utility calls the system 
@@ -823,26 +830,23 @@ karl:$y$j9T$oR2ZofMTuH3dpEGbw6c/y.$TwfvHgCl4sIp0b28YTepJ3YVvl/3UyWKeLCmDV1tAd9:1
 							<c>crypt</c>
 						</url> command and prints the output. Let’s run this utility with the password we’ve cracked and the first three parts of the hash information from 
 						<c>/etc/shadow</c>. If everything goes well, you should see hash output that matches what is in 
-						<c>/etc/shadow</c>:
-				
+						<c>/etc/shadow</c>. To try this, type <c>crypt &lt;karl's password&gt; '$y$j9T$oR2ZofMTuH3dpEGbw6c/y.'</c>  into the terminal, replacing <c>&lt;karl's password&gt;</c> with the actual password you cracked. You should see your command followed by output similar to the following:
 					</p>
 					<pre>root@vm-name:/# crypt &lt;karl's password&gt; '$y$j9T$oR2ZofMTuH3dpEGbw6c/y.'
 $y$j9T$oR2ZofMTuH3dpEGbw6c/y.$TwfvHgCl4sIp0b28YTepJ3YVvl/3UyWKeLCmDV1tAd9</pre>
 					<note>
 						<p>
-							Don’t forget to use the actual password you cracked and put the hash info in single quotes.
+							Don’t forget to use the actual password you cracked and to put the hash info in single quotes. Remember that the output line was described above as having the first part being the version of the hashing algorithm, the second part being the parameters passed to the algorithm, the third part being the salt, and the fourth part being the hash itself.
 						</p>
 					</note>
 
-					 <exercise label="tf-crypt-match" xml:id="tf-crypt-match">
+		<exercise label="tf-crypt-match" xml:id="tf-crypt-match">
         <statement>
 
-        <p>The output of the
-						<c>crypt</c> command exactly matches the hash in <c>/etc/shadow</c></p>.
+        <p>True or False: The output of the <c>crypt</c> command exactly matches the hash in <c>/etc/shadow</c>.</p>
 
         </statement>
-<choices>
-
+		<choices>
 
             <choice correct ="yes">
                 <statement>
@@ -861,7 +865,7 @@ $y$j9T$oR2ZofMTuH3dpEGbw6c/y.$TwfvHgCl4sIp0b28YTepJ3YVvl/3UyWKeLCmDV1tAd9</pre>
                     <p> Humm... They should be identical. Try again.</p>
                 </feedback>
             </choice>
-</choices>
+	</choices>
     </exercise>
 					
                     <note><p>Your instructor might ask you to submit a screenshot with your lab showing that the output of the
