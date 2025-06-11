@@ -693,11 +693,11 @@
 					</subsection>
 				</section>
 				<section xml:id="lab-scanning-with-nmap">
-					<title>Lab: Scanning with nmap</title>
+					<title>Lab: Scanning with Nmap</title>
 
 					<introduction>
-					<p>
-					For this lab, we need to use Docker, so you can again choose a Github Codespace or a local Docker installation. 
+					<p>The program Nmap (aka "Network Mapper") is a free and open source utility which can be used to scan IP addresses and ports in a network and perform security auditing of a network. Despite being created back in 1997, Nmap remains the preeminent tool for network managers. We will use it in today's lab.</p>
+					<p>For this lab, we need to use Docker, so you can again choose a Github Codespace or a local Docker installation. 
 					</p>			
 				</introduction>
 				<subsection xml:id="nmap-codespace">
@@ -736,14 +736,14 @@
 					
 				</subsection>
 				<subsection xml:id="nmap-local">
-					<title>Using nmap in a local Docker installation</title>
+					<title>Using Nmap in a Local Docker installation</title>
 					<p>
 					Start by downloading and extracting the files required. Download 
 						<url href="https://github.com/rxt1077/it230/raw/main/labs/nmap.zip">nmap.zip</url> and extract it to a directory you can access from the shell. 
 					</p>
 					</subsection>
 					<subsection xml:id="lab-instructions-for-nmap">
-						<title>Lab Instructions for nmap</title>
+						<title>Lab Instructions for Nmap</title>
 					<p>
 						
 						Open a shell in that directory (it should have a 
@@ -803,7 +803,7 @@ Recreating nmap_victim_1 ... done</pre>
 					<p>
 					Now we actually have two containers running, one named 
 						<c>victim</c> which is our target machine and another named 
-						<c>scanner</c> which we will use to learn about nmap. Lets start a BASH shell on 
+						<c>scanner</c> which we will use to learn about <c>nmap</c>. Lets start a BASH shell on 
 						<c>scanner</c> and work from there:
 				
 					</p>
@@ -845,7 +845,7 @@ root@7b6d733cc03a:/</pre>
 					<p>
 					We care about the 
 						<c>eth0</c> device, so as you can see on my machine the address is 
-						<c>172.20.0.2</c>. We will use nmap’s ping scan to search for any device within the last 8 bits of our IP address (
+						<c>172.20.0.2</c>. We will use <c>nmap</c>’s ping scan to search for any device within the last 8 bits of our IP address (
 						<c>/24</c>). You may notice that we are actually on a 
 						<c>/16</c> subnet, but by limiting ourselves to 
 						<c>/24</c> the scan will go 
@@ -911,7 +911,7 @@ Nmap done: 1 IP address (1 host up) scanned in 1.84 seconds</pre>
 					</question>
 
 					<p>
-					nmap is capable of much more than just simple port scanning. nmap includes version detection and OS fingerprinting (among other things). To get a much better picture of what exactly 
+					Nmap is capable of much more than just simple port scanning. Nmap includes version detection and OS fingerprinting (among other things). To get a much better picture of what exactly 
 						<c>victim</c> is running, you can use the 
 						<c>-A</c> option:
 				
