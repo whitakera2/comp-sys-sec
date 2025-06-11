@@ -693,11 +693,11 @@
 					</subsection>
 				</section>
 				<section xml:id="lab-scanning-with-nmap">
-					<title>Lab: Scanning with nmap</title>
+					<title>Lab: Scanning with Nmap</title>
 
 					<introduction>
-					<p>
-					For this lab, we need to use Docker, so you can again choose a Github Codespace or a local Docker installation. 
+					<p>The program Nmap (aka "Network Mapper") is a free and open source utility which can be used to scan IP addresses and ports in a network and perform security auditing of a network. Despite being created back in 1997, Nmap remains the preeminent tool for network managers. We will use it in today's lab.</p>
+					<p>For this lab, we need to use Docker, so you can again choose a Github Codespace or a local Docker installation. 
 					</p>			
 				</introduction>
 				<subsection xml:id="nmap-codespace">
@@ -736,23 +736,25 @@
 					
 				</subsection>
 				<subsection xml:id="nmap-local">
-					<title>Using nmap in a local Docker installation</title>
+					<title>Using Nmap in a Local Docker installation</title>
 					<p>
 					Start by downloading and extracting the files required. Download 
 						<url href="https://github.com/rxt1077/it230/raw/main/labs/nmap.zip">nmap.zip</url> and extract it to a directory you can access from the shell. 
 					</p>
 					</subsection>
 					<subsection xml:id="lab-instructions-for-nmap">
-						<title>Lab Instructions for nmap</title>
+						<title>Lab Instructions for Nmap</title>
 					<p>
 						
 						Open a shell in that directory (it should have a 
 						<c>docker-compose.yml</c> in it and a 
-						<c>victim</c> and 
-						<c>scanner</c> directory). Since we will be simulating multiple machines in this lab, we will make use of Docker Compose which was already installed with Docker. Docker Compose reads a 
+						victim and 
+						scanner directory). Since we will be simulating multiple machines in this lab, we will make use of Docker Compose which was already installed with Docker. Docker Compose reads a 
 						<c>docker-compose.yml</c> file which should already be in your 
-						<c>nmap</c> directory. Run 
-						<c>docker-compose up --build --detach</c> to build and run the images in the background:
+						<c>nmap</c> directory. 
+					</p><p>
+						To get started, run 
+						<c>docker-compose up --build --detach</c> to build and run the images in the background. You should see something like the following:
 					</p>
 
 					<pre>PS C:\Users\rxt1077\temp\nmap&gt; docker-compose up --build --detach
@@ -802,9 +804,10 @@ Recreating nmap_victim_1 ... done</pre>
 
 					<p>
 					Now we actually have two containers running, one named 
-						<c>victim</c> which is our target machine and another named 
-						<c>scanner</c> which we will use to learn about nmap. Lets start a BASH shell on 
-						<c>scanner</c> and work from there:
+						victim which is our target machine and another named 
+						scanner which we will use to learn about <c>nmap</c>. Lets start a BASH shell on 
+						scanner and work from there. We can do this with the
+						<c>docker-compose run scanner bash</c> command:
 				
 					</p>
 
@@ -816,7 +819,7 @@ root@7b6d733cc03a:/</pre>
 		<p>
 			Notice the prompt change. We are now 
 									<em>inside</em> the 
-									<c>scanner</c> container running BASH.
+									scanner container running BASH.
 		</p>
 	</note>
 
@@ -845,12 +848,11 @@ root@7b6d733cc03a:/</pre>
 					<p>
 					We care about the 
 						<c>eth0</c> device, so as you can see on my machine the address is 
-						<c>172.20.0.2</c>. We will use nmap’s ping scan to search for any device within the last 8 bits of our IP address (
+						<c>172.20.0.2</c>. We will use <c>nmap</c>’s ping scan to search for any device within the last 8 bits of our IP address (
 						<c>/24</c>). You may notice that we are actually on a 
 						<c>/16</c> subnet, but by limiting ourselves to 
 						<c>/24</c> the scan will go 
-						<em>much</em> faster.
-				
+						<em>much</em> faster. Type <c>nmap -sP 172.20.0.0/24</c> to see the following:			
 					</p>
 
 					<pre>root@7b6d733cc03a:/# nmap -sP 172.20.0.0/24
@@ -866,7 +868,7 @@ Host is up.
 Nmap done: 256 IP addresses (3 hosts up) scanned in 5.78 seconds</pre>
 
 					<p>
-					In this instance we found three other machines on the network. One of which is conveniently named victim.
+					In this instance, we found three other machines on the network. One of which is conveniently named victim.
 				</p>
 
 
@@ -881,7 +883,7 @@ Nmap done: 256 IP addresses (3 hosts up) scanned in 5.78 seconds</pre>
 					<p>
 					Now lets do a full scan on on the victim machine. Docker Compose does a nice job of resolving DNS requests for sensible names in the 
 						<c>docker-compose.yml</c> file so we can refer to the host we want to scan as 
-						<c>victim</c>.
+						"victim". Type <c>nmap victim</c> to see the following:
 				
 					</p>
 
@@ -911,10 +913,9 @@ Nmap done: 1 IP address (1 host up) scanned in 1.84 seconds</pre>
 					</question>
 
 					<p>
-					nmap is capable of much more than just simple port scanning. nmap includes version detection and OS fingerprinting (among other things). To get a much better picture of what exactly 
-						<c>victim</c> is running, you can use the 
-						<c>-A</c> option:
-				
+					Nmap is capable of much more than just simple port scanning. Nmap includes version detection and OS fingerprinting (among other things). To get a much better picture of what exactly 
+						victim is running, you can use the 
+						<c>-A</c> option by typing ,<c>nmap -A victim</c>.			
 					</p>
 
 					<pre>root@7b6d733cc03a:/# nmap -A victim
@@ -960,8 +961,8 @@ Nmap done: 1 IP address (1 host up) scanned in 28.39 seconds</pre>
 
 					<p>
 					Now, using the 
-						<c>scanner</c> container you are currently on see what you can find out about 
-						<c>victim</c>. 
+						scanner container you are currently on see what you can find out about 
+						victim. 
 						<url href="https://linux.die.net/man/1/ftp">This man page may be of some help.</url>
 					</p>
 
@@ -981,7 +982,7 @@ Nmap done: 1 IP address (1 host up) scanned in 28.39 seconds</pre>
 					<p>
 					When you are all done poking around, you can exit the shell and run 
 						<c>docker-compose down</c> to stop 
-						<c>victim</c> from running in the background.					</p>
+						victim from running in the background.					</p>
 						<note>
 							
 
