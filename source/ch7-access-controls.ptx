@@ -86,7 +86,7 @@
 							<title>ABAC</title>
 							<p><idx>attribute-based access control</idx><term>Attribute-Based access control</term> <idx>ABAC</idx><term>(ABAC)</term> is a newer model that builds off of RBAC and uses more general attributes instead of just roles. ABAC can determine who has different levels of access to objects based on the attributes of the object, the user, the action, or even an external context.</p> 
 						</subsubsection>
-					
+					</subsection>
 						<conclusion>
 							<p>These attributes can be used together in any way that can be codified into a rule. For example, "Give Fred read access to non-classified documents in this folder from 9:00AM to 5:00PM."</p>
 <p>
@@ -151,7 +151,7 @@
 						</table><fn>Khalaf, Emad. (2017). A Survey of Access Control and Data Encryption for Database Security. journal of King Abdulaziz University Engineering Sciences. 28. 19-30. 10.4197/Eng.28-1.2. Reproduced under license: CC BY-NC 4.0</fn>
 					</p>
 						</conclusion>
-					</subsection>
+
 				</section>
 				<section xml:id="physical-access">
 					<title>Physical Access</title>
@@ -608,19 +608,68 @@
 				</section>
 				<section xml:id="lab-linux-file-permissions">
 					<title>Lab: Linux File Permissions</title>
+<introduction>
+
 
 					<p>
 					In this lab we are going to explore UNIX-style file permissions and determine what they can do and why they are limited. Finally we will see how Linux ACLs provide more flexibility in assigning permissions.
 				</p>
 
 					<p>
-					We will be working in a vanilla Ubuntu container and installing software and adding users manually. Let’s start up the container, install the packages we need, and add some users to work with:
+					We will be working in a vanilla Ubuntu container and installing software and adding users manually. Let’s start up the container, install the packages we need, and add some users to work with.
 				</p>
-
-					<pre>C:\Users\rxt1077\it230\docs&gt;docker run -it ubuntu bash
-root@11ce9e5ee80e:/# apt-get update
+</introduction>
+				<subsection xml:id="linux-codespace">
+					<title>Linux Permissions in a Github Codespace</title>
+					<p>
+						Go <url href="https://github.com/pearcej/security-linux">github.com/pearcej/security-linux</url>. Then:
+							<ol>
+								<li>
+									<p>
+										Fork this codespace into your own Github repository.
+									</p>
+								</li>
+								<li>
+									<p>
+										Navigate to your repository on GitHub.
+									</p>
+								</li>
+								<li>
+									<p>
+										Click the green Code button and select Codespaces.
+									</p>
+								</li>
+								<li>
+									<p>
+										Click "Create codespace on main".
+									</p>
+								</li>
+								<li>
+									<p>
+										Wait for the codespace to be created.
+									</p>
+								</li>
+							</ol>
+							Be sure to either stop or delete this codespace when you are done by clicking the "Stop" button or the "Delete" button in the Codespaces tab of your repository.</p>
+			<p>Next, please skip the next section and follow the directions in <xref ref="linux-continue"/>.
+			</p>
+				
+				</subsection>
+				<subsection xml:id="linux-local">
+					<title>Linux Permissions in a Local Docker installation</title>
+					<p>
+					Start a vanilla container by running <c>docker run -it ubuntu bash</c> to get an Ubuntu container.
+					</p>
+					</subsection>
+					<subsection xml:id="linux-continue">
+						<title>Lab Instructions for Linux Permissions</title>
+					<p>
+						Let's run some updates and install the ACL package using the following commands <c>sudo apt-get update</c> followed by <c>sudo apt-get install acl</c>. This will ensure that we have the latest package information and the ACL package installed. Note that we will use the <c>sudo</c> command, which is used in Unix-like operating systems and allows a user to run programs with the security privileges of another user, typically the superuser. It stands for "superuser do" and is commonly used to perform administrative tasks without needing to log in as the root user. It is not necessary if you are already logged in as the root user, but it is a good practice to use it for commands that require elevated privileges.
+					</p>
+					<pre>
+root@11ce9e5ee80e:/# sudo apt-get update
 &lt;snip&gt;
-root@11ce9e5ee80e:/# apt-get install acl
+root@11ce9e5ee80e:/# sudo apt-get install acl
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -637,19 +686,25 @@ Selecting previously unselected package acl.
 Preparing to unpack .../acl_2.2.53-6_amd64.deb ...
 Unpacking acl (2.2.53-6) ...
 Setting up acl (2.2.53-6) ...
-root@11ce9e5ee80e:/# useradd alice
-root@11ce9e5ee80e:/# useradd bob
-root@11ce9e5ee80e:/# useradd carol
-root@11ce9e5ee80e:/# useradd dave</pre>
+					</pre>
+					<p>
+						Next, let's add some users to our system. We will create four users: alice, bob, carol, and dave. We will use the <c>useradd</c> command to create these users. The <c>useradd</c> command requires superuser privileges, so we will use <c>sudo</c> to run it.
+					</p>
+					<pre>
+root@11ce9e5ee80e:/# sudo useradd alice
+root@11ce9e5ee80e:/# sudo useradd bob
+root@11ce9e5ee80e:/# sudo useradd carol
+root@11ce9e5ee80e:/# sudo useradd dave
+</pre>
 
 					<p>
 					Traditional UNIX-style file permissions support user and group ownership of a file. Read, write, and execute permissions for a file can be set for the user, group, or others. You can view the permissions of a file with the 
-						<c>ls -l</c> command. Let’s make home directories for Alice, Bob, and Carol and view the default permissions:
+						<c>ls -l</c> command. Let’s make home directories for Alice, Bob, and Carol and view the default permissions. First run <c>cd home</c> and then create the directories with <c>mkdir alice bob carol</c>. Finally, run <c>ls -l</c> to view the permissions of the directories you just created.
 				
 					</p>
 
 					<pre>root@11ce9e5ee80e:/# cd home
-root@11ce9e5ee80e:/home# mkdir alice bob carol
+root@11ce9e5ee80e:/home# sudo mkdir alice bob carol
 root@11ce9e5ee80e:/home# ls -l
 total 12
 drwxr-xr-x 2 root root 4096 Oct 28 01:28 alice
@@ -665,13 +720,13 @@ drwxr-xr-x 2 root root 4096 Oct 28 01:28 carol</pre>
 					<p>
 					Files owners and a groups are set with the 
 						<c>chown</c> command, following the format 
-						<c>chown &lt;user&gt;.&lt;group&gt; &lt;filename&gt;</c>. Let’s try to use this command to make the home directories of alice, bob, and carol private:
+						<c>chown &lt;user&gt;.&lt;group&gt; &lt;filename&gt;</c>. Let’s try to use this command to make the home directories of alice, bob, and carol private. Do this as follows:
 				
 					</p>
 
-					<pre>root@11ce9e5ee80e:/home# chown alice.alice alice
-root@11ce9e5ee80e:/home# chown bob.bob bob
-root@11ce9e5ee80e:/home# chown carol.carol carol
+					<pre>root@11ce9e5ee80e:/home# sudo chown alice.alice alice
+root@11ce9e5ee80e:/home# sudo chown bob.bob bob
+root@11ce9e5ee80e:/home# sudo chown carol.carol carol
 root@11ce9e5ee80e:/home# ls -l
 total 12
 drwxr-xr-x 2 alice alice 4096 Oct 28 01:28 alice
@@ -822,7 +877,12 @@ other::---</pre>
 					<p>
 					When you are done, you can type exit to exit bash and stop the container.
 				</p>
-
+						<note>
+						<p>
+							If you chose to use a Github codespace, don't forget to stop or delete the codespace by clicking the "Stop" button or the "Delete" button in the Codespaces tab of your repository.
+						</p>
+						</note>
+					</subsection>
 				</section>
 				<section xml:id="access-controls-review">
 					<title>Review Questions</title>
