@@ -853,6 +853,9 @@ root@5195de3d330c:/# ip addr
        valid_lft forever preferred_lft forever
     inet 172.20.0.5/32 scope global eth0 (5)
        valid_lft forever preferred_lft forever</pre>
+	   <note>
+		<title>Things to note in previous code</title>
+	
 					<p>
 					 <ul>
 						<li>
@@ -867,7 +870,7 @@ root@5195de3d330c:/# ip addr
 						</li>
 					 </ul>
 					</p>
-					
+				</note>
 					<p>
 					Now that the attacker system is configured, we’ll start up 
 						<c>scapy</c> interactively:
