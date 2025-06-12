@@ -548,10 +548,11 @@ cleartext = (11**29)%91 = 72 (decrypted using N and d)
 						<em>unique</em> set of characters for a given 
 						<em>message</em>. In a perfect world, given a hash you should 
 						<em>not</em> be able to determine what the original message was, but given a hash and the original message you can check that the hash matches the message. Before we dive into the uses of a hash, lets try to further understand it by looking at a simple and consequently poor hashing algorithm.</p>
-						<note><p>The following algorithm is so poor that it may be a stretch even to call it a hashing algorithm. That being said, it is being used as a tool to explain what hashes are.</p></note>
+
 					</introduction>
 					<subsection xml:id="anagram-hash">
 						<title>Anagram Hash</title>
+												<note><p>The following algorithm is so poor that it may be a stretch even to call it a hashing algorithm. That being said, it is being used as a tool to explain what hashes are.</p></note>
 					<p>
 					Let’s assume we wanted to hash the message "Hello from Karl" so that we can have a string of characters the uniquely represent that phrase. One way to do it would be to strip all the punctuation in the message, make everything lowercase, and then arrange all the letters alphabetically. "Hello from Karl" becomes "aefhklllmoorr". You can think of it like saying, "There is one 'a' in the message, one 'e' in the message, one 'f' in the message', one 'k' in the message, three 'l’s in the message…​" Now our hash, "aefhklllmoorr", can be used to uniquely identify the phrase.
 				</p>
@@ -646,7 +647,7 @@ cleartext = (11**29)%91 = 72 (decrypted using N and d)
 						<url href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701">Windows Terminal app</url> and in MacOS you can use the preinstalled Terminal app. Boxes show the commands to be typed into the terminal with typical output where possible. Your prompt (the part shown before the command) may differ depending on your OS.
 					</p>
 					<p>
-					Start by running a <c>bash</c> shell in the terminal on a custom Linux container:
+					Start by running a <c>bash</c> shell in the terminal on a custom Linux container, and type <c>docker run -it ryantolboom/hash</c>. You should see your command followed by output similar to the following:
 				</p>
 					<pre>ryan@R90VJ3MK:/windir/c/Users/rxt1077/it230/docs$ docker run -it ryantolboom/hash
 root@vm-name:/</pre>
@@ -739,7 +740,7 @@ karl:$y$j9T$oR2ZofMTuH3dpEGbw6c/y.$TwfvHgCl4sIp0b28YTepJ3YVvl/3UyWKeLCmDV1tAd9:1
 				
 					</p>
 					<p>
-					John the Ripper (aka John) is already installed on this container along with a simple wordlist. We will tell it to use the default wordlist to try and determine what the password is that matches karl’s hash in 
+					John the Ripper (aka John) is already installed on this container along with a simple wordlist. To use John the Ripper, you need to provide it with a password file containing hashed passwords and then run the command <c>john &lt;passwordfile&gt;</c> in your terminal. You can also customize its behavior with options like <c>--wordlist</c> to specify a custom wordlist for cracking. We will tell it to use the default wordlist to try and determine what the password is that matches karl’s hash in 
 						<c>/etc/shadow</c> by running the command <c>john --format=crypt --wordlist=/usr/share/john/password.lst /etc/shadow</c>. The <c>--format=crypt</c> option tells John the Ripper to use the crypt format, which is the format used by the hashes in the shadow file. The <c>--wordlist</c> option tells John to use the specified wordlist file, which is a list of common passwords. The last argument is the file containing the hashes, in this case <c>/etc/shadow</c>. You should see your command followed by output similar to the following:
 					</p>
 					<pre>root@vm-name:/# john --format=crypt --wordlist=/usr/share/john/password.lst /etc/shadow

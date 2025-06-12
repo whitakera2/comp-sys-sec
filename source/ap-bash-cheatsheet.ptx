@@ -117,9 +117,9 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
         </ul>
       </li>
       <li>
-      <title><c>cd &lt;directory-name&gt;</c></title>
+      <title><c>cd &lt;dir-name&gt;</c></title>
         <p>
-          <term>Change directory</term> to <c>&lt;directory-name&gt;</c>.   
+          <term>Change directory</term> to <c>&lt;dir-name&gt;</c>.   
           <ul>
             <li>
               <p>
@@ -140,9 +140,10 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
         </p>
       </li>
             <li>
-              <title><c>mv &lt;old-name&gt; &lt;new-name&gt;</c></title>
+              <title><c>mv &lt;old&gt; &lt;new&gt;</c></title>
               <p>
-                <term>Move</term> (rename) files or directories.
+                <term>Move</term> (or rename) files or directories.
+              </p>
               <ul>
                 <li>
                   <p>
@@ -150,13 +151,13 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
                   </p>
                 </li>
               </ul>
-            </p>
             </li>
 
             <li>
               <title><c>rm &lt;file-name&gt;</c></title>
               <p>
                 <term>Remove</term> deletes a file or directory.
+              </p>
               <ul>
                 <li>
                   <p>
@@ -164,13 +165,12 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
                   </p>
                 </li>
               </ul>
-            </p>
             </li>
 
   <li>
-  <title><c>mkdir  &lt;directory-name&gt;</c></title>
+  <title><c>mkdir  &lt;dir-name&gt;</c></title>
         <p>
-          <term>Make directory</term> with name &lt;directory-name&gt;.
+          <term>Make directory</term> with name &lt;dir-name&gt;.
           <ul>
           <li>
             <p>
@@ -181,17 +181,36 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
         </p>
   </li>
 <li>
-  <title> <c>rmdir &lt;directory-name&gt; </c></title>
+  <title> <c>rmdir &lt;dir-name&gt; </c></title>
         <p>
-          <term>Remove directory</term> with specified name &lt;directory-name&gt;
+          <term>Remove directory</term> with specified name &lt;dir-name&gt;
           <ul>
           <li>
             <p>
-              e.g. <c>mkdir olddir</c> removes (deletes) the directory with the name olddir. 
+              e.g. <c>rmdir olddir</c> removes (deletes) the directory with the name olddir. 
             </p>
           </li>
         </ul>
         </p>
+      </li>
+
+      <li>
+        <title><c>find &lt;path&gt; &lt;criteria&gt;</c></title>
+        <p>
+          The <term>find</term> command searches for files and directories within a specified path based on various criteria.
+        </p>
+        <ul>
+          <li>
+            <p>
+            e.g. <c>find /var/log -name "*.log"</c> finds all files ending in .log in the /var/log directory.
+            </p>
+          </li>
+          <li>
+            <p>
+            e.g. <c>find /home -perm 777</c> finds all files and directories with world-writable permissions.
+            </p>
+          </li>
+        </ul>
       </li>
     </dl>
     </p>
@@ -209,9 +228,15 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
               <ul>
                 <li>
                   <p>
-                  e.g. <c>echo 'Hello World!'</c> print the text 'Hello World!' on the standard output. 
+                  e.g. <c>echo "Hello World!"</c> prints the text "Hello World!"" on the standard output. 
                   </p>
                 </li>
+                  <li>
+                    <p>
+                    e.g. <c> echo "my string" &gt;&gt; ./myfile.txt</c> uses the redirect to create or overwrite a file named <c>myfile.txt</c> containing "my string" as its contents. 
+                    </p>
+                  </li>
+
                   <li>
                     <p>
                     e.g. <c>echo $USER</c> prints the value of the USER environment variable on the standard output. 
@@ -283,6 +308,25 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
           </ul>
         </p>
         </li>
+
+        <li>
+          <title><c>grep &lt;pattern&gt; &lt;name&gt;</c></title>
+          <p>
+            The <term>grep</term> command searches for specified patterns or text within files and displays matching lines. It is essential for log analysis and searching through system files.
+          <ul>
+            <li>
+              <p>
+              e.g. <c>grep "error" /var/log/messages</c> searches for lines containing "error" in the system log file.
+              </p>
+            </li>
+            <li>
+              <p>
+              e.g. <c>grep -i "failed login" /var/log/auth.log</c> searches for failed login attempts (case-insensitive) in the authentication log.
+              </p>
+            </li>
+          </ul>
+        </p>
+        </li>
     </dl>
 </p>
 </paragraphs>
@@ -334,25 +378,23 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
     </p>
 </paragraphs>
 
- <paragraphs>
-  <title>File Permissions</title>
+<paragraphs>
+  <title>System Administration and Security</title>
      <p>
-
         <dl width="narrow" >
             <li>
-              <title><c> chown &lt;newuser:newgroup&gt; &lt;file-name&gt; </c></title>
+              <title><c>sudo &lt;command&gt;</c></title>
               <p>
-                The <term>chown</term> command is used to change the file owner and/or group.
-
+                The <term>sudo</term> command allows a permitted user to execute a command as another user, typically as the superuser (root). It is essential for performing administrative tasks securely.
               <ul>
                 <li>
                   <p>
-                  e.g. <c>chmod pearcej file.txt</c> changes the owner of file.txt to pearcej.
+                  e.g. <c>sudo cat /etc/shadow</c> displays the shadow password file using administrator privileges.
                   </p>
                 </li>
                 <li>
                   <p>
-                  e.g. <c>chmod :friends file.txt</c> changes the group of file.txt to friends. 
+                  e.g. <c>sudo useradd alice</c> creates a new user account named alice with administrative privileges.
                   </p>
                 </li>
               </ul>
@@ -360,7 +402,53 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
             </li>
 
             <li>
-              <title><c> chmod &lt;change&gt;&lt;which&gt; &lt;file-name&gt; </c></title>
+              <title><c>ps &lt;options&gt;</c></title>
+              <p>
+                The <term>ps</term> command displays information about currently running processes. It is crucial for monitoring system activity and identifying running services.
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>ps aux</c> shows all running processes with detailed information including user, CPU usage, and memory usage.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>ps -ef | grep ssh</c> displays all processes related to SSH services.
+                  </p>
+                </li>
+              </ul>
+            </p>
+            </li>
+        </dl>
+    </p>
+</paragraphs>
+
+ <paragraphs>
+  <title>File Permissions</title>
+     <p>
+
+        <dl width="narrow" >
+            <li>
+              <title><c>chown &lt;name&gt; &lt;file&gt;</c></title>
+              <p>
+                The <term>chown</term> command is used to change the file owner and/or group.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>chown pearcej file.txt</c> changes the owner of file.txt to pearcej.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>chown :friends file.txt</c> changes the group of file.txt to friends. 
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>chmod &lt;flags&gt; &lt;file&gt;</c></title>
               <p>
                 The <c>chmod</c> command is used to change permissions. The following symbols are the most commonly used:
               </p>
@@ -379,7 +467,6 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
               <p>             
                 <c>x</c> which permission: execute
               </p>
-              <p>
               <ul>
                 <li>
                   <p>
@@ -387,8 +474,29 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
                   </p>
                 </li>
               </ul>
-            </p>
             </li>
+        </dl>
+    </p>
+</paragraphs>
+
+<paragraphs>
+<title>Programs Used in this Text</title>
+     <p>
+        <dl width="narrow" >
+            <li>
+              <title><c>md5sum</c></title>
+              <p>
+               The <c>md5sum</c> program calculates and verifies 128-bit MD5 hashes, producing a compact digital fingerprint of a file.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>md5sum &lt;file-name&gt;</c> computes the MD5 hash of the specified file.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
         </dl>
     </p>
 </paragraphs>
@@ -404,6 +512,3 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
 </paragraphs>
 
 </section>
-
-
-
