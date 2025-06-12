@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<section xml:id="ap-bash-cheatsheet" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <title>Bash Shell Cheat Sheet</title>
+<section xml:id="ap-commands-cheatsheet" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Commands Cheat Sheet</title>
 
  <paragraphs>
-  <title>Getting help with shell commands</title>
+  <title>Purpose of this Cheat Sheet</title>
+  <p>
+  </p>
+  <p>
+      The following is intended to be useful in better understanding bash shell commands as well as with commands that run programs used in this book that run in the bash shell.
+      </p>
+      </paragraphs>
+<paragraphs>
+<title>Help Commands</title>
      <p>
         <dl width="narrow" >
             <li>
