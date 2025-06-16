@@ -91,7 +91,7 @@
 
 						<figure xml:id="fig-ssl-mitm">
 						<caption>SSL Circumvention Attack</caption>
-						<image source="ssl-mitm.svg" width="50%">
+						<image source="ssl-mitm.svg" width="80%">
 							<shortdescription>Sequence diagram illustrating an SSL Man-in-the-Middle attack where an attacker intercepts communications, prevents an HTTPS upgrade for the victim, and captures plaintext credentials.</shortdescription>
 							<description>
 							<p>The diagram shows interactions between a "Victim," an "Attacker," and a "Server" to illustrate an SSL circumvention attack. The Victim initiates a connection by sending a "GET http://njit.edu" request, which is intercepted by the Attacker. The Attacker forwards this GET request to the Server. The Server responds with a "301 Moved" redirect, typically indicating a move to HTTPS. The Attacker receives this redirect but does not forward it to the Victim. Instead, the Attacker initiates its own "GET https://njit.edu" request to the Server, establishing a secure HTTPS connection. The Server responds to the Attacker with "200 OK (HTTPS)". The Attacker then sends a "200 OK (HTTP)" response back to the Victim, deceiving the Victim into believing they are communicating over a standard HTTP connection with the server and that no HTTPS upgrade occurred. Subsequently, the Victim sends their credentials, "POST http://njit.edu username=admin password=admin," over this unencrypted HTTP connection to the Attacker. The Attacker, having captured the plaintext credentials, can then forward this POST request, potentially over a secure HTTPS connection ("POST https://njit.edu username=admin password=admin"), to the legitimate Server. This allows the attacker to intercept sensitive information while the victim believes their session is normal, albeit unencrypted as presented by the attacker.</p>
@@ -534,7 +534,7 @@ $statement = "SELECT * FROM users WHERE name='" + $userName + "' AND password='"
 						
 						<figure xml:id="fig-privilege-escalation">
 						<caption>Privilege Escalation</caption>
-						<image source="escalation.svg">
+						<image source="escalation.svg" width="50%">
 							<shortdescription>Diagram illustrating the concept of privilege escalation using steps of increasing height representing different user access levels.</shortdescription>
 							<description>
 							<p>The diagram uses a step-like visual metaphor to represent different levels of user privileges and the process of escalating those privileges. Three vertical rectangular blocks of increasing height are shown side-by-side. The shortest block on the left is labeled "User," representing the lowest privilege level. To its right is a taller block labeled "Admin," indicating a higher level of privileges. The tallest block, on the far right, is labeled "Super Admin," signifying the highest level of access. A prominent black arrow originates from the bottom left of the diagram, extending diagonally upwards and to the right across the tops of these blocks. This arrow visually represents the act of escalation, moving from a lower privilege status (User) towards progressively higher and more powerful access levels (Admin and Super Admin).</p>
