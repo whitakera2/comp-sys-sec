@@ -419,6 +419,24 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
               </ul>
             </p>
             </li>
+            <li>
+              <title><c>su &lt;username&gt;</c></title>
+              <p>
+                The <term>su</term> (substitute user) command allows you to switch to another user account. When used without a username, it defaults to switching to the root super user. Unlike <c>sudo</c>, <c>su</c> starts a new shell session as the target user.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>su</c> switches to the root super user account after prompting for the root password.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>su dave</c> switches to the user account named dave after prompting for dave's password.
+                  </p>
+                </li>
+              </ul>
+            </li>
         </dl>
     </p>
 </paragraphs>

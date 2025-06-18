@@ -651,7 +651,7 @@
 					<subsection xml:id="linux-continue">
 						<title>Lab Instructions for Linux Permissions</title>
 					<p>
-						Let's run some updates and install the ACL package using the following commands <c>sudo apt-get update</c> followed by <c>sudo apt-get install acl</c>. This will ensure that we have the latest package information and the ACL package installed. Note that we will use the <c>sudo</c> command, which is used in Unix-like operating systems and allows a user to run programs with the security privileges of another user, typically the superuser. It stands for "superuser do" and is commonly used to perform administrative tasks without needing to log in as the root user. It is not necessary if you are already logged in as the root user, but it is a good practice to use it for commands that require elevated privileges.
+						Let's run some updates and install the ACL package using the following commands <c>sudo apt-get update</c> followed by <c>sudo apt-get install acl</c>. This will ensure that we have the latest package information and the ACL package installed. Note that we will use the <c>sudo</c> command, which is used in Unix-like operating systems and allows a user to run programs with the security privileges of another user, typically the superuser. It originally stood for "superuser do" and is commonly used to perform administrative tasks without needing to log in as the root user. It is not necessary if you are already logged in as the root user, but it is a good practice to use it for commands that require elevated privileges.
 					</p>
 					<pre>
 root@11ce9e5ee80e:/# sudo apt-get update
@@ -707,13 +707,24 @@ drwxr-xr-x 2 root root 4096 Oct 28 01:28 carol</pre>
 					<p>
 					Files owners and a groups are set with the 
 						<c>chown</c> command, following the format 
-						<c>chown &lt;user&gt;.&lt;group&gt; &lt;filename&gt;</c>. Let’s try to use this command to make the home directories of alice, bob, and carol private. Do this as follows:
+						<c>chown &lt;user&gt;.&lt;group&gt; &lt;filename&gt;</c>. Let’s try to use this command to make the home directories of alice, bob, and carol private. Do this by running each of the following commands:
 				
 					</p>
 
 					<pre>root@11ce9e5ee80e:/home# sudo chown alice.alice alice
 root@11ce9e5ee80e:/home# sudo chown bob.bob bob
-root@11ce9e5ee80e:/home# sudo chown carol.carol carol
+root@11ce9e5ee80e:/home# sudo chown carol.carol carol</pre>
+
+					<p>
+					Now let’s view the permissions again by running 
+						<c>ls -l</c>:
+				
+					</p>
+					<p>
+						You should see the following output:
+					</p>
+
+					<pre>root@11ce9e5ee80e:/home# ls -l
 root@11ce9e5ee80e:/home# ls -l
 total 12
 drwxr-xr-x 2 alice alice 4096 Oct 28 01:28 alice
@@ -724,8 +735,8 @@ drwxr-xr-x 2 carol carol 4096 Oct 28 01:28 carol</pre>
 					When a user is added to a UNIX system with the 
 						<c>useradd</c> command a group with their name is created. This allows us to pass a group to 
 						<c>chown</c> that only they will have access to. While this is a good start, others still have the ability to read and execute these directories, meaning 
-						<em>anyone</em> can view the contents. To prove this, lets assume the role of dave and try doing an 
-						<c>ls</c> on each of the directories:
+						<em>anyone</em> can view the contents. To prove this, lets assume the role of dave switching to the user dave by typing <c>su dave </c> and then do an 
+						<c>ls</c> on each of the directories as follows:
 				
 					</p>
 
@@ -737,8 +748,8 @@ $ exit</pre>
 
 						<note>
 								<p>
-									(1) The <c>su</c> command allows us to assume the role of anyone, often it is used to assume the role of the
-									<em>superuser</em>.
+									(1) The <em>switch user</em> or <c>su</c> command allows us to assume the role of anyone, often it is used to assume the role of the
+									<em>superuser</em> by using it without a username as <c>su</c>. In this case we are using <c>su dave</c> to assume the role of dave, who is a regular user.
 								</p>
 					</note>
 
@@ -768,7 +779,7 @@ drwx------ 2 bob   bob   4096 Oct 28 01:28 bob
 drwx------ 2 carol carol 4096 Oct 28 01:28 carol</pre>
 
 					<p>
-					Things look much better, but let’s test it and see if Dave can view any of the directories:
+					Things look much better, but let’s test it and see if Dave can view any of the directories by running the following commands:
 				</p>
 
 					<pre>root@11ce9e5ee80e:/home# su dave
