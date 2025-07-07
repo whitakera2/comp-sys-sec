@@ -740,7 +740,7 @@ drwxr-xr-x 2 carol carol 4096 Oct 28 01:28 carol</pre>
 				
 					</p>
 
-					<pre>root@11ce9e5ee80e:/home# su dave (1)
+					<pre>root@11ce9e5ee80e:/home# sudo su dave (1)
 $ ls alice
 $ ls bob
 $ ls carol
@@ -769,9 +769,9 @@ $ exit</pre>
 				
 					</p>
 
-					<pre>root@11ce9e5ee80e:/home# chmod u=rwx,g=,o= alice
-root@11ce9e5ee80e:/home# chmod u=rwx,g=,o= bob
-root@11ce9e5ee80e:/home# chmod u=rwx,g=,o= carol
+					<pre>root@11ce9e5ee80e:/home# sudo chmod u=rwx,g=,o= alice
+root@11ce9e5ee80e:/home# sudo chmod u=rwx,g=,o= bob
+root@11ce9e5ee80e:/home# sudo chmod u=rwx,g=,o= carol
 root@11ce9e5ee80e:/home# ls -l
 total 12
 drwx------ 2 alice alice 4096 Oct 28 01:28 alice
@@ -782,7 +782,7 @@ drwx------ 2 carol carol 4096 Oct 28 01:28 carol</pre>
 					Things look much better, but let’s test it and see if Dave can view any of the directories by running the following commands:
 				</p>
 
-					<pre>root@11ce9e5ee80e:/home# su dave
+					<pre>root@11ce9e5ee80e:/home# sudo su dave
 $ ls alice
 ls: cannot open directory 'alice': Permission denied
 $ ls bob
@@ -795,16 +795,20 @@ $ exit</pre>
 					Lastly, lets make sure that Alice can view the contents of her home directory:
 				</p>
 
-					<pre>root@11ce9e5ee80e:/home# su alice
+					<pre>root@11ce9e5ee80e:/home# sudo su alice
 $ ls alice
 $ exit</pre>
 
 					<p>
 					Looks good!
 				</p>
+				<hint>
+					<p>
+						Look at the chmod command that was used to make the home directories private.
+					</p>
+				</hint>
 					<question>
 						
-					
 					<p>
 					Using your first name (all lowercase) add yourself as a user and create a home directory for yourself. Set the permissions such that only you can view the contents. Show the permissions of the home directory and demonstrate that another user cannot view its contents. Take a screenshot showing all of this and submit this as one of your deliverables.
 				
@@ -827,8 +831,8 @@ $ exit</pre>
 				
 					</p>
 
-					<pre>root@11ce9e5ee80e:/home# useradd http
-root@11ce9e5ee80e:/home# setfacl -m u:http:rx alice bob carol
+					<pre>root@11ce9e5ee80e:/home# sudo useradd http
+root@11ce9e5ee80e:/home# sudo setfacl -m u:http:rx alice bob carol
 root@11ce9e5ee80e:/home# ls -l
 total 12
 drwxr-x---+ 2 alice alice 4096 Oct 28 01:28 alice (2)
