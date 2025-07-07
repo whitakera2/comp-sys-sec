@@ -356,7 +356,7 @@
 						
 						<figure xml:id="fig-ssrf-attack">
 						<caption>Server-Side Request Forgery (SSRF)</caption>
-						<image source="ssrf.svg">
+						<image source="ssrf.png">
 							<shortdescription>Diagram illustrating a Server-Side Request Forgery (SSRF) attack where an attacker tricks a web server into making requests to an internal network resource.</shortdescription>
 							<description>
 							<p>The diagram shows an "Attacker" located on the "Internet," a public-facing web server labeled "example.com" that appears to bridge the "Internet" and an "Intranet," and an internal server identified by the IP address "10.0.0.1" within the "Intranet." The attack begins when the "Attacker" sends a specially crafted GET request to "example.com." This request includes a URL parameter, such as "content=http://10.0.0.1/secret," which points to a resource on the internal server. The vulnerable "example.com" server processes this parameter and, as a result, makes a "Request" on behalf of the attacker to the internal "10.0.0.1" server for the "/secret" resource. The internal server "10.0.0.1" then sends a "Response" containing the requested data back to "example.com." Finally, "example.com" relays this "Response: secret" back to the "Attacker" on the Internet. This flow demonstrates how the attacker exploits the SSRF vulnerability in "example.com" to access and exfiltrate data from an internal system that would otherwise be inaccessible from the public Internet.</p>
