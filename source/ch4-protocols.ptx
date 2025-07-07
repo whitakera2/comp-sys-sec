@@ -972,12 +972,14 @@ Nmap done: 1 IP address (1 host up) scanned in 28.39 seconds</pre>
 						<url href="https://linux.die.net/man/1/ftp">This man page may be of some help.</url>
 					</p>
 
+					<exercise label = "fillin-Password" xml:id="fillin-password">
+						<statement>
+						<p>BONUS: Remembering what you learned in the Hash it Out lab, what is the root password on the victim machine?<var/></p></statement><setup><var>
+						<condition string="hunter"><feedback><p>Right!</p></feedback></condition>
+						<condition string="^\s*default\s*$"><feedback><p>Incorrect. Try taking advantage of the insecure ftp conection to find the users password.</p></feedback></condition></var></setup>
 
-					<question>
-						<p>
-							BONUS: Remembering what you learned in the <em>Hash it Out</em> lab, what is the root password on the victim machine?
-						</p>
-					</question>
+					</exercise>
+
 
 					<question>
 						<p>
