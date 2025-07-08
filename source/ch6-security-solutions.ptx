@@ -599,10 +599,11 @@ root@3971c61303c8:/# (1)</pre>
 <condition string="YouGotMe"><feedback><p>Right! Sounds great, doesn't it?</p></feedback></condition>
 <condition string="^\s*default\s*$"><feedback><p>Incorrect. Copy and paste it from the terminal (capitalizatoin matters). Please try again.</p></feedback></condition></var></setup> </exercise>
 
-<exercise label="fillin-mitigate-database-leak" xml:id="fillin-mitigate-database-leak">
-    <statement><p>In a few sentences, what steps would you take to mitigate the risk of a deployed application having this vulnerability? <var/></p></statement>
-    <setup><var><condition string=".*\S.*"><feedback><p>Thank you. Your answer has been recorded.</p></feedback></condition>
-	<condition string="^\s*$"><feedback><p>This field cannot be empty. Please provide an answer.</p></feedback></condition></var></setup></exercise>
+<question>
+					<p>
+					What steps would you take to mitigate the risk of a deployed application having this vulnerability?
+				</p>
+				</question>
 			
 			<note>
 			<p>
