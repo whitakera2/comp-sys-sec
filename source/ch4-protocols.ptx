@@ -16,6 +16,13 @@
 				This chapter will give a brief description of important protocols following the TCP/IP layering model. It is important to note that some of these protocols may reach across layers to accomplish tasks. In this case they will be grouped according to which layer they largely function within.
 			</p>
   </introduction>
+  					<subsection xml:id="osi-model">
+						<title>The OSI Model</title>
+						<p>
+							The <term>Open Systems Interconnection</term> (<term>OSI</term>) model describes.
+						</p>
+						
+					</subsection>
 					<subsection xml:id="arp">
 						<title>ARP</title>
 
