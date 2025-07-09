@@ -319,7 +319,7 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 					</p>
 				<exercise label = "fillin-whats-4-lunch" xml:id="fillin-whats-4-lunch">
         <statement>
-<p>What's for lunch'?<var/></p></statement><setup><var>
+<p>What's for lunch?<var/></p></statement><setup><var>
 <condition string="burnt toast and sorrow"><feedback><p>Right! Sounds great, doesn't it?</p></feedback></condition>
 <condition string="^\s*default\s*$"><feedback><p>Incorrect. Copy and paste it from the webpage. Please try again.</p></feedback></condition></var></setup>
 
