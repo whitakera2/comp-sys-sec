@@ -379,6 +379,129 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
 </paragraphs>
 
 <paragraphs>
+<title>Networking Commands</title>
+     <p>
+        <dl width="narrow" >
+  
+            <li>
+              <title><c>ftp &lt;host&gt;</c></title>
+              <p>
+                The <term>ftp</term> command starts an interactive File Transfer Protocol session for transferring files between hosts. Note that FTP transmits passwords in plaintext and should be avoided in favor of SFTP when possible.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>ftp 192.168.1.50</c> opens an FTP connection to the specified IP address.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>ftp anonymous@fileserver.example.com</c> connects using anonymous FTP login.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>ip &lt;options&gt;</c></title>
+              <p>
+                The <term>ip</term> command is used to display and configure network interfaces, routing tables, and network settings. It is the modern replacement for older commands like ifconfig.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>ip addr</c> displays all network interfaces and their IP addresses.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>ip addr add 172.20.0.5 dev eth0</c> adds an additional IP address to the eth0 interface for MitM attacks.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>ping &lt;host&gt;</c></title>
+              <p>
+                The <term>ping</term> command sends ICMP echo requests to test network connectivity and measure response time to a host.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>ping 8.8.8.8</c> tests connectivity to Google's DNS server.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>ping victim</c> tests connectivity to a host named victim in your lab environment.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>ssh &lt;user&gt;@&lt;host&gt;</c></title>
+              <p>
+                The <term>ssh</term> command establishes a secure encrypted connection to a remote host, allowing secure remote administration and file transfer.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>ssh server</c> connects to a host named server using your current username.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>ssh root@192.168.1.100</c> connects to the remote host at 192.168.1.100 as the root user.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>telnet &lt;host&gt; &lt;port&gt;</c></title>
+              <p>
+                The <term>telnet</term> command establishes an unencrypted connection to a remote host. While insecure for remote administration, it is useful for testing network services and connectivity to specific ports.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>telnet example.com 80</c> tests if HTTP service is running on port 80.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>telnet mail.example.com 25</c> tests connectivity to an SMTP server on port 25.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>traceroute &lt;host&gt;</c></title>
+              <p>
+                The <term>traceroute</term> command traces the route packets take to reach a destination, showing each hop along the path and response times.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>traceroute 8.8.8.8</c> shows the network path to Google's DNS server.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>traceroute njit.edu</c> displays the route to NJIT's web server.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+        </dl>
+    </p>
+</paragraphs>
+
+<paragraphs>
   <title>System Administration and Security</title>
      <p>
         <dl width="narrow" >
