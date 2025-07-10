@@ -216,6 +216,118 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
     </p>
  </paragraphs>
 
+  <paragraphs>
+  <title>File Archiving and File Permissions</title>
+     <p>
+
+        <dl width="narrow" >
+            <li>
+              <title><c>chown &lt;name&gt; &lt;file&gt;</c></title>
+              <p>
+                The <term><c>chown</c></term> command is used to change the file owner and/or group.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>chown pearcej file.txt</c> changes the owner of file.txt to pearcej.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>chown :friends file.txt</c> changes the group of file.txt to friends. 
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>chmod &lt;flags&gt; &lt;file&gt;</c></title>
+              <p>
+                The <c>chmod</c> command is used to change permissions. The following symbols are the most commonly used:
+              </p>
+              <p>
+                <c>+</c> change by adding permission
+              </p>
+              <p>
+                <c>-</c> change by removing permission
+              </p>
+              <p>
+                <c>r</c> which permission: read
+              </p>
+              <p>
+                <c>w</c> which permission: write
+              </p>
+              <p>             
+                <c>x</c> which permission: execute
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>chmod +x helloworld.sh</c> adds execute permission for all users to the helloworld.sh file.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>gzip &lt;file&gt;</c></title>
+              <p>
+                The <term>gzip</term> command compresses files using the GNU zip compression algorithm, reducing file size for storage or transmission.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>gzip logfile.txt</c> compresses logfile.txt into logfile.txt.gz.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>gzip -d backup.gz</c> decompresses backup.gz back to its original form.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>tar &lt;options&gt; &lt;archive&gt; &lt;files&gt;</c></title>
+              <p>
+                The <term>tar</term> command creates, extracts, and manipulates tape archive files. It is commonly used for bundling multiple files and directories into a single archive file.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>tar -czf backup.tar.gz /home/alice</c> creates a compressed archive of alice's home directory.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>tar -xzf archive.tar.gz</c> extracts files from a compressed tar archive.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <title><c>unzip &lt;archive&gt;</c></title>
+              <p>
+                The <term>unzip</term> command extracts files from ZIP archives, which are commonly used for file compression and distribution across different operating systems.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>unzip lab-files.zip</c> extracts all files from the lab-files.zip archive.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>unzip -d /tmp malicious.zip</c> extracts files from malicious.zip into the /tmp directory.
+                  </p>
+                </li>
+              </ul>
+            </li>
+        </dl>
+    </p>
+</paragraphs>
+
  <paragraphs>
   <title>The Basics: Reading, Writing, Counting, etc</title>
      <p>
@@ -504,11 +616,221 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
 <paragraphs>
   <title>System Administration and Security</title>
      <p>
-        <dl width="narrow" >
+        <dl width="narrow">
+          
+          <li>
+              <title><c>apt &lt;package&gt;</c></title>
+              <p>
+                The <term>advanced package tool</term> or <idx><c>apt</c></idx><term>apt</term> command is a simplified package management interface for Debian and Ubuntu systems. It provides an easy-to-use frontend for installing, updating, and removing software packages.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>apt update</c> updates the package list from repositories.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>apt install nmap</c> installs the nmap network scanning tool.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
             <li>
+              <title><c>apt-get &lt;package&gt;</c></title>
+              <p>
+                The <idx><c>apt-get</c></idx><term>apt-get</term> command is the traditional advanced package tool package management tool for Debian and Ubuntu systems. It handles the installation, updating, and removal of software packages and their dependencies.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>apt-get update</c> updates the list of available packages from repositories.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>apt-get install acl</c> installs the Access Control List tools used in file permissions labs.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>crypt &lt;password&gt; &lt;salt&gt;</c></title>
+              <p>
+                The <term>crypt</term> command generates password hashes using the system's crypt function. It is used to create encrypted passwords compatible with the system's password storage format.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>crypt password '$y$j9T$oR2ZofMTuH3dpEGbw6c/y.'</c> creates a hash using the specified password and salt.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>crypt mypassword '$6$randomsalt$'</c> generates a SHA-512 hash with the given salt.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+                       <li>
+              <title><c>date</c></title>
+              <p>
+                The <term>date</term> command displays or sets the system date and time. Accurate time synchronization is critical for security protocols, log analysis, and certificate validation.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>date</c> displays the current system date and time.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>date +"%Y-%m-%d %H:%M:%S"</c> displays the date and time in a specific format for log entries.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>getfacl &lt;file&gt;</c></title>
+              <p>
+                The <term>getfacl</term> command displays the Access Control Lists (ACLs) for files and directories, showing detailed permission information beyond standard Unix permissions.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>getfacl alice</c> displays the ACL permissions for alice's directory.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>getfacl alice bob carol</c> shows ACL information for multiple directories at once.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>hostname</c></title>
+              <p>
+                The <term>hostname</term> command displays or sets the system's network name. Knowing the hostname is important for network identification and security monitoring.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>hostname</c> displays the current system hostname.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>hostname -I</c> displays the IP addresses associated with the hostname.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            
+            <li>
+              <title><c>kill &lt;process-id&gt;</c></title>
+              <p>
+                The <idx><c>kill</c></idx><term>kill</term> command terminates processes by sending signals to them. By default, it sends the TERM signal, but other signals can be specified for different termination behaviors.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>kill 1234</c> sends a termination signal to the process with ID 1234.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>kill -9 5678</c> forcefully terminates the process with ID 5678 using the <c>kill</c> signal.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+          <li>
+              <title><c>passwd &lt;username&gt;</c></title>
+              <p>
+                The <idx><c>passwd</c></idx><term>passwd</term> command changes a user's password. When run without a username, it changes the current user's password. Administrative privileges are required to change other users' passwords.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>passwd</c> changes the password for the currently logged-in user.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>passwd alice</c> changes the password for user alice (requires administrative privileges).
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>ps &lt;options&gt;</c></title>
+              <p>
+                The <idx>process status</idx><term>process status</term> or <idx><c>ps</c></idx><term>ps</term> command displays status information about currently running processes. It is crucial for monitoring system activity and identifying running services.
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>ps aux</c> shows all running processes with detailed information including user, CPU usage, and memory usage.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>ps -ef | grep ssh</c> displays all processes related to SSH services.
+                  </p>
+                </li>
+              </ul>
+            </p>
+            </li>
+
+            <li>
+              <title><c>setfacl &lt;file&gt;</c></title>
+              <p>
+                The <term>setfacl</term> command sets Access Control Lists (ACLs) on files and directories, providing more granular permission control than traditional Unix file permissions.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>setfacl -m u:http:rx alice</c> grants read and execute permissions to the http user for alice's directory.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>setfacl -m u:alice:rw file.txt</c> gives alice read and write access to file.txt.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>su &lt;username&gt;</c></title>
+              <p>
+                The <idx>substitute user</idx><term>substitute user</term> or <idx><c>su</c></idx><term>su</term> command allows you to switch to another user account. When used without a username, it defaults to switching to the root super user. Unlike <c>sudo</c>, <c>su</c> starts a new shell session as the target user.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>su</c> switches to the root super user account after prompting for the root password.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>su dave</c> switches to the user account named dave after prompting for dave's password.
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+              <li>
               <title><c>sudo &lt;command&gt;</c></title>
               <p>
-                The <term>sudo</term> command allows a permitted user to execute a command as another user, typically as the superuser (root). It is essential for performing administrative tasks securely.
+                The <term>substitute user do</term> or <idx><c>sudo</c></idx><term>sudo</term> command allows a permitted user to execute a command as another user, typically as the superuser (root). The <c>sudo</c> command is essential for performing administrative tasks securely.
               <ul>
                 <li>
                   <p>
@@ -525,93 +847,70 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
             </li>
 
             <li>
-              <title><c>ps &lt;options&gt;</c></title>
+              <title><c>top</c></title>
               <p>
-                The <term>ps</term> command displays information about currently running processes. It is crucial for monitoring system activity and identifying running services.
-              <ul>
-                <li>
-                  <p>
-                  e.g. <c>ps aux</c> shows all running processes with detailed information including user, CPU usage, and memory usage.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>ps -ef | grep ssh</c> displays all processes related to SSH services.
-                  </p>
-                </li>
-              </ul>
-            </p>
-            </li>
-            <li>
-              <title><c>su &lt;username&gt;</c></title>
-              <p>
-                The <term>su</term> (substitute user) command allows you to switch to another user account. When used without a username, it defaults to switching to the root super user. Unlike <c>sudo</c>, <c>su</c> starts a new shell session as the target user.
+                The <term>top</term> command displays real-time information about running processes, including CPU usage, memory consumption, and system load. It provides a dynamic view of system activity and resource utilization.
               </p>
               <ul>
                 <li>
                   <p>
-                  e.g. <c>su</c> switches to the root super user account after prompting for the root password.
+                  e.g. <c>top</c> displays a live view of all running processes sorted by CPU usage.
                   </p>
                 </li>
                 <li>
                   <p>
-                  e.g. <c>su dave</c> switches to the user account named dave after prompting for dave's password.
-                  </p>
-                </li>
-              </ul>
-            </li>
-        </dl>
-    </p>
-</paragraphs>
-
- <paragraphs>
-  <title>File Permissions</title>
-     <p>
-
-        <dl width="narrow" >
-            <li>
-              <title><c>chown &lt;name&gt; &lt;file&gt;</c></title>
-              <p>
-                The <term>chown</term> command is used to change the file owner and/or group.
-              </p>
-              <ul>
-                <li>
-                  <p>
-                  e.g. <c>chown pearcej file.txt</c> changes the owner of file.txt to pearcej.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>chown :friends file.txt</c> changes the group of file.txt to friends. 
+                  e.g. <c>top -u alice</c> shows only processes running under the user alice.
                   </p>
                 </li>
               </ul>
             </li>
 
             <li>
-              <title><c>chmod &lt;flags&gt; &lt;file&gt;</c></title>
+              <title><c>uname &lt;options&gt;</c></title>
               <p>
-                The <c>chmod</c> command is used to change permissions. The following symbols are the most commonly used:
-              </p>
-              <p>
-                <c>+</c> change by adding permission
-              </p>
-              <p>
-                <c>-</c> change by removing permission
-              </p>
-              <p>
-                <c>r</c> which permission: read
-              </p>
-              <p>
-                <c>w</c> which permission: write
-              </p>
-              <p>             
-                <c>x</c> which permission: execute
+                The <term>uname</term> command displays system information including the operating system name, version, and hardware architecture. This information is useful for vulnerability assessment and system inventory.
               </p>
               <ul>
                 <li>
                   <p>
-                  e.g. <c>chmod +x helloworld.sh</c> adds execute permission for all users to the helloworld.sh file.
+                  e.g. <c>uname -a</c> displays all available system information including kernel version and architecture.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>uname -r</c> displays only the kernel release version.
+                  </p>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <title><c>uptime</c></title>
+              <p>
+                The <term>uptime</term> command shows how long the system has been running, the number of users currently logged in, and the system load averages. This information helps assess system stability and performance.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>uptime</c> displays system uptime, user count, and load averages.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  e.g. <c>uptime -p</c> displays uptime in a human-readable format (e.g., "up 2 days, 3 hours").
+                  </p>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <title><c>useradd &lt;username&gt;</c></title>
+              <p>
+                The <term>useradd</term> command creates a new user account on the system. It adds an entry to the system account files and can create the user's home directory.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                  e.g. <c>useradd alice</c> creates a new user account named <em>alice</em>. Since this is a system-level command, it requires administrative privileges, so can be executed either from the system-level root account or by using <c>sudo</c> as in <c>sudo useradd alice</c>.
                   </p>
                 </li>
               </ul>
@@ -627,8 +926,8 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
           
             <li>
               <title><c>docker</c></title>
-              <p>
-               Docker is a platform for developing, shipping, and running applications in containers. It lets you package software with all its dependencies into a single unit called a container, which ensures the application runs reliably regardless of the environment. Containers can be thought of as being similar to virtual machines. Unlike virtual machines, though, containers run on the host kernal. Because of this, containers are more lightweight and less resource-intensive than virtual machines. 
+              <p><idx>docker</idx>
+               <term>Docker</term> is a platform for developing, shipping, and running applications in containers. It lets you package software with all needed dependencies into a single unit called a <idx>container</idx><term>container</term>, which ensures the application runs reliably regardless of the environment. Containers can be thought of as being similar to virtual machines, but unlike virtual machines, containers run on the host kernel. Because of this, containers are more lightweight and less resource-intensive than virtual machines. 
               </p>
               <ul>
                 <li>
@@ -658,12 +957,12 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
                 </li>
                 <li>
                   <p>
-                  e.g. <c>docker-compose up</c> starts multi-container applications.
+                  e.g. <c>docker-compose up</c> starts multi-container Docker applications.
                   </p>
                 </li>
                 <li>
                   <p>
-                  e.g. <c>docker-compose run</c> runs commands in containers. 
+                  e.g. <c>docker-compose run</c> runs commands in Docker containers. 
                   </p>
                 </li>
                 <li>
@@ -673,7 +972,7 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
                 </li>
                 <li>
                   <p>
-                  e.g. <c>docker help</c> lists available commands.
+                  e.g. <c>docker help</c> lists available Docker commands.
                   </p>
                 </li>
                 
@@ -715,8 +1014,8 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
 
             <li>
               <title><c>nmap</c></title>
-              <p>
-               Network Mapper (Nmap) is a network discovery and security auditing tool used to scan networks and identify open ports, services, and operating systems.
+              <p><idx>network mapper</idx>
+               The <term>network mapping</term> program called <idx><c>nmap</c></idx><term><c>nmap</c></term> is a network discovery and security auditing tool used to scan networks and identify open ports, services, and operating systems.
               </p>
               <ul>
                 <li>
@@ -739,7 +1038,7 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
 
             <li>
               <title><c>scapy</c></title>
-              <p>
+              <p><idx>packet manipulation</idx>
                Scapy is an interactive packet manipulation program that allows users to create, send, and analyze network packets for security testing and analysis.  Scapy mainly does two things: sends packets and receives answers, matching requests with answers and returning a list of packet couples (request, answer) and a list of unmatched packets. To use it you need to install it using something like <c>pip install scapy</c>. The following are some examples of how to use it:
               </p>
               <ul>
