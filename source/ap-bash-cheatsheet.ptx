@@ -139,6 +139,25 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
           </ul>
         </p>
       </li>
+
+      <li>
+  <title><c>cp &lt;source&gt; &lt;dest&gt;</c></title>
+  <p>
+    <term>Copy</term> files or directories from one location to another.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>cp config.txt backup.txt</c> creates a copy of config.txt named backup.txt.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>cp -r /home/alice /backup/</c> recursively copies alice's entire home directory to the backup folder.
+      </p>
+    </li>
+  </ul>
+</li>
             <li>
               <title><c>mv &lt;old&gt; &lt;new&gt;</c></title>
               <p>
@@ -289,7 +308,7 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
             </li>
 
             <li>
-              <title><c>tar &lt;options&gt; &lt;archive&gt; &lt;files&gt;</c></title>
+              <title><c>tar &lt;archive&gt; &lt;files&gt;</c></title>
               <p>
                 The <term>tar</term> command creates, extracts, and manipulates tape archive files. It is commonly used for bundling multiple files and directories into a single archive file.
               </p>
@@ -324,6 +343,25 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
                 </li>
               </ul>
             </li>
+
+            <li>
+  <title><c>zip &lt;archive&gt; &lt;files&gt;</c></title>
+  <p>
+    The <term>zip</term> command creates ZIP archives by compressing files and directories into a single archive file. ZIP format is widely supported across different operating systems.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>zip evidence.zip logfile.txt config.txt</c> creates a ZIP archive containing the specified files.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>zip -r project.zip /home/alice/project/</c> recursively creates a ZIP archive of the entire project directory.
+      </p>
+    </li>
+  </ul>
+</li>
         </dl>
     </p>
 </paragraphs>
@@ -331,7 +369,25 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
  <paragraphs>
   <title>The Basics: Reading, Writing, Counting, etc</title>
      <p>
-        <dl width="narrow" >
+        <dl width="narrow">
+<li>
+  <title><c>awk &lt;pattern&gt; &lt;file&gt;</c></title>
+  <p>
+    The <term>awk</term> command is a pattern-scanning and data extraction language that processes text files field by field. It is particularly useful for analyzing structured data, log files, and generating reports from columnar data.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>awk '{print $1, $3}' /etc/passwd</c> prints the first and third fields (username and UID) from the passwd file.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>ps aux | awk '$3 > 5.0 {print $2, $11}'</c> displays the process ID and command name for processes using more than 5% CPU.
+      </p>
+    </li>
+  </ul>
+</li>          
             <li>
               <title><c>echo &lt;text&gt;</c></title>
               <p>
@@ -375,6 +431,45 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
             </ul>
           </p>
           </li>
+
+<li>
+  <title><c>exit</c></title>
+  <p>
+    The <term>exit</term> command terminates the current shell session or container. It is essential for properly closing Docker containers, SSH sessions, and sub-shells.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>exit</c> closes the current shell session and returns to the parent shell.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>exit 0</c> exits with a specific status code (0 indicates success).
+      </p>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <title><c>head &lt;file&gt;</c></title>
+  <p>
+    The <term>head</term> command displays the first few lines of a file (default is 10 lines). It is useful for quickly examining log files, configuration files, or large datasets without displaying the entire contents.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>head /var/log/auth.log</c> displays the first 10 lines of the authentication log file.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>head -n 20 error.log</c> displays the first 20 lines of the error.log file.
+      </p>
+    </li>
+  </ul>
+</li>
+
         <li>
           <title><c>read &lt;variable-name&gt;</c></title>
           <p>
@@ -388,6 +483,64 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
           </ul>
         </p>
         </li>
+
+<li>
+  <title><c>sed &lt;pattern&gt; &lt;file&gt;</c></title>
+  <p>
+    The <term>stream editor</term> or <term>sed</term> command performs text transformations on files or input streams. It is powerful for automating text editing tasks, replacing strings, and modifying configuration files.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>sed 's/password/PASSWORD/g' config.txt</c> replaces all occurrences of "password" with "PASSWORD" in config.txt.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>sed -n '1,5p' /etc/passwd</c> prints only lines 1 through 5 of the passwd file.
+      </p>
+    </li>
+  </ul>
+</li>
+
+<li>
+    <title><c>sort &lt;file-name&gt;</c></title>
+  <p>
+    The <term>sort</term> command arranges lines of text in alphabetical, numerical, or custom order. It is essential for organizing data and preparing output for analysis or reporting.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>sort userlist.txt</c> sorts the lines in userlist.txt alphabetically.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>ps aux | sort -k 3 -nr</c> displays running processes sorted by CPU usage in descending order.
+      </p>
+    </li>
+  </ul>
+</li>
+
+<li>
+  <title><c>tail &lt;file-name&gt;</c></title>
+  <p>
+    The <term>tail</term> command displays the last few lines of a file (default is 10 lines). It is especially useful for monitoring log files in real-time and examining recent system activity.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>tail /var/log/messages</c> displays the last 10 lines of the system messages log.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>tail -f /var/log/auth.log</c> continuously displays new lines as they are added to the authentication log (useful for real-time monitoring).
+      </p>
+    </li>
+  </ul>
+</li>
+
         <li>
           <title><c>wc &lt;file-name&gt;</c></title>
           <p>
@@ -915,6 +1068,25 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
                 </li>
               </ul>
             </li>
+
+            <li>
+  <title><c>which &lt;command&gt;</c></title>
+  <p>
+    The <term>which</term> command locates and displays the full path of executable commands. It is useful for troubleshooting command availability and verifying which version of a program will be executed.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>which python</c> displays the full path to the python executable.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>which nmap</c> shows the location of the nmap security scanner, useful for verifying installation.
+      </p>
+    </li>
+  </ul>
+</li>
         </dl>
     </p>
 </paragraphs>
@@ -923,62 +1095,44 @@ The <term>touch</term> command is commonly used for file creation. Its intended 
 <title>Key Programs Used in this Text</title>
      <p>
         <dl width="narrow" >
-          
-            <li>
-              <title><c>docker</c></title>
-              <p><idx>docker</idx>
-               <term>Docker</term> is a platform for developing, shipping, and running applications in containers. It lets you package software with all needed dependencies into a single unit called a <idx>container</idx><term>container</term>, which ensures the application runs reliably regardless of the environment. Containers can be thought of as being similar to virtual machines, but unlike virtual machines, containers run on the host kernel. Because of this, containers are more lightweight and less resource-intensive than virtual machines. 
-              </p>
-              <ul>
-                <li>
-                  <p>
-                  e.g. <c>docker run</c> runs containers.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker build</c> builds container images. 
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker images</c> shows all local images. 
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker ps</c> shows all currently running containers. Adding the <c>-a</c> flag shows images that are stopped as well.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker start &lt;container&gt;</c> and <c>docker stop &lt;container&gt;</c> start and stop containers. 
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker-compose up</c> starts multi-container Docker applications.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker-compose run</c> runs commands in Docker containers. 
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker-compose down</c> stops containers. 
-                  </p>
-                </li>
-                <li>
-                  <p>
-                  e.g. <c>docker help</c> lists available Docker commands.
-                  </p>
-                </li>
-                
-              </ul>
-            </li>
-
+<li>
+  <title><c>docker</c></title>
+  <p><idx>docker</idx>
+   <term>Docker</term> is a platform for developing, shipping, and running applications in containers. It lets you package software with all needed dependencies into a single unit called a <idx>container</idx><term>container</term>, which ensures the application runs reliably regardless of the environment. Containers are lightweight and less resource-intensive than virtual machines because they run on the host kernel.
+  </p>
+  <ul>
+    <li>
+      <p>
+      e.g. <c>docker build -t malicious .</c> builds a container image with the name "malicious" from the current directory.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>docker-compose down</c> stops the running containers.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>docker-compose run scanner bash</c> runs a bash shell in the scanner container.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>docker-compose up</c> starts multi-container applications as defined in docker-compose.yml.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>docker run -it ubuntu bash</c> runs an interactive Ubuntu container with a bash shell. Here <c>-it</c> is just the <c>-i</c> and <c>-t</c> flags put together, which are short for <c>--interactive</c> and <c>--tty</c> which allocates a pseudo-TTY session.
+      </p>
+    </li>
+    <li>
+      <p>
+      e.g. <c>docker run -p 8080:80 malicious</c> runs a container named malicious, mapping host port 8080 to container port 80.
+      </p>
+    </li>
+  </ul>
+</li>
             <li>
               <title><c>john</c></title>
               <p>
